@@ -75,12 +75,14 @@ namespace kursovoi_project_trpo
 
         private void событияToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Form form = new Events();
+            form.Show();
         }
 
         private void клиникаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Form form = new Clinic();
+            form.Show();
         }
     }
 }

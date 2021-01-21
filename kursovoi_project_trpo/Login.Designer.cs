@@ -88,7 +88,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Name = "Login";
-            this.Text = "Login";
+            this.Text = "Вход";
             this.ResumeLayout(false);
             this.PerformLayout();
 
