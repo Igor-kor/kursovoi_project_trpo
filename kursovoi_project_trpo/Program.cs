@@ -13,10 +13,11 @@ namespace kursovoi_project_trpo
         /// </summary>
         [STAThread]
         static void Main()
-        {
+        { 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Clinic());
+            Application.Run(new Login());
+
         }
     }
 }
