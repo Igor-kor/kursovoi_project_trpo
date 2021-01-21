@@ -48,11 +48,6 @@ namespace kursovoi_project_trpo
             }
         }
 
-        private void ListNames()
-        {
-
-        }
-
         private void SortTable()
         {
             dataGridView1.Sort(dataGridView1.Columns[comboBox1.SelectedIndex], radioButton1.Checked ? ListSortDirection.Ascending : ListSortDirection.Descending);
