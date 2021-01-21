@@ -48,6 +48,11 @@ namespace kursovoi_project_trpo
             }
         }
 
+        private void ListNames()
+        {
+
+        }
+
         private void SortTable()
         {
             dataGridView1.Sort(dataGridView1.Columns[comboBox1.SelectedIndex], radioButton1.Checked ? ListSortDirection.Ascending : ListSortDirection.Descending);
@@ -72,6 +77,11 @@ namespace kursovoi_project_trpo
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             SortTable();
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
