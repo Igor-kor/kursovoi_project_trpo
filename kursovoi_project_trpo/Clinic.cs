@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace kursovoi_project_trpo
 {
-    public partial class Form1 : Form
+    public partial class Clinic : Form
     {
-        public Form1()
+        public Clinic()
         {
             InitializeComponent();
         }
