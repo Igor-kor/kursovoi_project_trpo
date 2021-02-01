@@ -29,7 +29,7 @@ namespace kursovoi_project_trpo
         {
             using (OleDbConnection connection = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
             {
-                string query = "SELECT Name, DaysHealth, PriceDay, PriceMedicoment FROM Clinic WHERE NumberOtd = @NumberOtd ;";
+                string query = "SELECT Disease.NameDisease, Clinic.DaysHealth, Clinic.PriceDay, Clinic.PriceMedicoment FROM Clinic INNER JOIN Disease ON Clinic.Name = Disease.Код WHERE (Clinic.NumberOtd = @NumberOtd);";
 
                 using (OleDbCommand command = new OleDbCommand(query, connection))
                 {

@@ -39,8 +39,11 @@ namespace kursovoi_project_trpo
         {
             using (OleDbConnection connection = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
             {
-                string query = "SELECT * FROM Clinic;";
-
+              
+                      string query = @"SELECT A.Код, C.NumberDepartment, B.NameDisease, A.DaysHealth, A.PriceDay, A.PriceMedicoment 
+                                FROM Clinic A, Disease B, Department C,
+                                A LEFT JOIN B ON A.Name = B.Код,
+                                A LEFT JOIN C ON A.NumberOtd = C.Код ;";
                 using (OleDbCommand command = new OleDbCommand(query, connection))
                 {
                     connection.Open();
@@ -68,7 +71,7 @@ namespace kursovoi_project_trpo
                     sqlDataAdap.Fill(dtRecord);
                     foreach (DataRow row in dtRecord.Rows)
                     {
-                        if(!names.Contains(row[0].ToString()))names.Add(row[0].ToString());
+                        if (!names.Contains(row[0].ToString())) names.Add(row[0].ToString());
                     }
                     connection.Close();
                 }
@@ -81,7 +84,7 @@ namespace kursovoi_project_trpo
             List<string> names = new List<string>();
             using (OleDbConnection connection = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
             {
-                string query = "SELECT NumberOtd FROM Clinic;";
+                string query = "SELECT NumberDepartment, Код FROM Department;";
 
                 using (OleDbCommand command = new OleDbCommand(query, connection))
                 {
@@ -132,8 +135,28 @@ namespace kursovoi_project_trpo
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Form form = new ViewOtd(Convert.ToInt32(comboBox3.SelectedItem));
+            string names = "";
+            using (OleDbConnection connection = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+            {
+                string query = "SELECT Код FROM Department WHERE NumberDepartment = @id;";
+            
+                using (OleDbCommand command = new OleDbCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", comboBox3.SelectedItem.ToString());
+                    connection.Open();
+                    OleDbDataAdapter sqlDataAdap = new OleDbDataAdapter(command);
+                    DataTable dtRecord = new DataTable();
+                    sqlDataAdap.Fill(dtRecord);
+                    foreach (DataRow row in dtRecord.Rows)
+                    {
+                        names = row[0].ToString();
+                    }
+                    connection.Close();
+                }
+            }
+            Form form = new ViewOtd(Convert.ToInt32(names));
             form.Show();
+
         }
 
         private string FindMinDay()
@@ -143,14 +166,14 @@ namespace kursovoi_project_trpo
             {
                 string query = "SELECT * FROM Clinic ;";
                 using (OleDbCommand command = new OleDbCommand(query, connection))
-                {                   
+                {
                     connection.Open();
                     OleDbDataAdapter sqlDataAdap = new OleDbDataAdapter(command);
                     DataTable dtRecord = new DataTable();
                     sqlDataAdap.Fill(dtRecord);
                     dtRecord.DefaultView.Sort = "PriceDay asc";
                     dtRecord = dtRecord.DefaultView.ToTable();
-                    if(dtRecord.Rows.Count == 0)
+                    if (dtRecord.Rows.Count == 0)
                     {
                         idLow = -1;
                         connection.Close();
@@ -188,7 +211,8 @@ namespace kursovoi_project_trpo
                         textBox3.Text += (Convert.ToInt32(row[3].ToString()) * Convert.ToInt32(row[4].ToString()) + Convert.ToInt32(row[5].ToString())) + ", ";
                         textBox1.Text += Convert.ToInt32(row[5].ToString()) + ", ";
                     }
-                    textBox2.Text =""+ (sredStoimost / CountItem);
+                    if(CountItem > 0)
+                    textBox2.Text = "" + (sredStoimost / CountItem);
                     connection.Close();
                 }
             }
@@ -204,21 +228,57 @@ namespace kursovoi_project_trpo
                 {
                     command.Parameters.AddWithValue("@id", idLow);
                     connection.Open();
-                    OleDbDataAdapter sqlDataAdap = new OleDbDataAdapter(command); 
+                    OleDbDataAdapter sqlDataAdap = new OleDbDataAdapter(command);
                     int result = command.ExecuteNonQuery();
 
                     if (result < 0)
                         MessageBox.Show("Произошла ошибка при удалении данных!");
                     else
-                    { 
+                    {
                         this.clinicTableAdapter1.Fill(this.databaseDataSet1.Clinic);
-                        
+
                         MessageBox.Show("Удаление прошло успешно!");
-                    }  
+                    }
                     connection.Close();
                 }
             }
             textBox4.Text = FindMinDay();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form form = new AddClinic();
+            form.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            using (OleDbConnection connection = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+            {
+                string query = "UPDATE Clinic SET PriceDay =  PriceDay + ( PriceDay / 100 * " + numericUpDown1.Value.ToString() + " )  WHERE Name = @id;";
+
+                using (OleDbCommand command = new OleDbCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", comboBox2.SelectedItem.ToString()); 
+                    connection.Open();
+                    OleDbDataAdapter sqlDataAdap = new OleDbDataAdapter(command);
+                    DataTable dtRecord = new DataTable();
+                    sqlDataAdap.Fill(dtRecord);
+       
+                    connection.Close();
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form form = new EditClinic();
+            form.Show();
         }
     }
 }

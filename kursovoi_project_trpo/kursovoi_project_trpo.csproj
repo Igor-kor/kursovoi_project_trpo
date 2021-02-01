@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddAddres.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAddres.Designer.cs">
+      <DependentUpon>AddAddres.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddClinic.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="EditAddres.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditAddres.Designer.cs">
+      <DependentUpon>EditAddres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditClinic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditClinic.Designer.cs">
+      <DependentUpon>EditClinic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Events.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +119,12 @@
     <Compile Include="ViewOtd.Designer.cs">
       <DependentUpon>ViewOtd.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddAddres.resx">
+      <DependentUpon>AddAddres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddClinic.resx">
+      <DependentUpon>AddClinic.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddEvent.resx">
       <DependentUpon>AddEvent.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,6 +133,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Clinic.resx">
       <DependentUpon>Clinic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditAddres.resx">
+      <DependentUpon>EditAddres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditClinic.resx">
+      <DependentUpon>EditClinic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Events.resx">
       <DependentUpon>Events.cs</DependentUpon>
@@ -131,6 +161,7 @@
     <EmbeddedResource Include="ViewOtd.resx">
       <DependentUpon>ViewOtd.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="DatabaseDataSet.xsc">
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
     </None>

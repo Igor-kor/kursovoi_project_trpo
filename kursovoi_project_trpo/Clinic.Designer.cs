@@ -48,9 +48,9 @@
             this.button5 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -61,8 +61,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.clinicTableAdapter1 = new kursovoi_project_trpo.DatabaseDataSetTableAdapters.ClinicTableAdapter();
             this.databaseDataSet1 = new kursovoi_project_trpo.DatabaseDataSet();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -91,6 +91,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Добавить";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -100,6 +101,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Редактировать";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -109,6 +111,7 @@
             this.button3.TabIndex = 3;
             this.button3.Text = "Удалить";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -244,6 +247,7 @@
             this.button5.TabIndex = 19;
             this.button5.Text = "Увеличить";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // groupBox2
             // 
@@ -265,22 +269,20 @@
             this.groupBox3.Controls.Add(this.comboBox3);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.button6);
-            this.groupBox3.Location = new System.Drawing.Point(300, 226);
+            this.groupBox3.Location = new System.Drawing.Point(516, 403);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(191, 89);
+            this.groupBox3.Size = new System.Drawing.Size(254, 89);
             this.groupBox3.TabIndex = 21;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Просмотреть цены в отделении";
             // 
-            // button6
+            // comboBox3
             // 
-            this.button6.Location = new System.Drawing.Point(60, 50);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 0;
-            this.button6.Text = "Просмотр";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(101, 23);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(130, 21);
+            this.comboBox3.TabIndex = 23;
             // 
             // label7
             // 
@@ -291,13 +293,15 @@
             this.label7.TabIndex = 22;
             this.label7.Text = "Отделение";
             // 
-            // comboBox3
+            // button6
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(101, 23);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(64, 21);
-            this.comboBox3.TabIndex = 23;
+            this.button6.Location = new System.Drawing.Point(91, 50);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 0;
+            this.button6.Text = "Просмотр";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // label8
             // 
@@ -394,6 +398,13 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Удалить болезнь с минимальной стоимостью дня";
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(113, 23);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 20);
+            this.textBox4.TabIndex = 32;
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -402,13 +413,6 @@
             this.label11.Size = new System.Drawing.Size(50, 13);
             this.label11.TabIndex = 31;
             this.label11.Text = "Болезнь";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(113, 23);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 32;
             // 
             // clinicTableAdapter1
             // 

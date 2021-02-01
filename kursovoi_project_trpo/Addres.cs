@@ -70,5 +70,24 @@ namespace kursovoi_project_trpo
                 }
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form form = new AddAddres();
+            form.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form form = new EditAddres();
+            form.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Удаление успешно!");
+            // удаляет выбранные строки в таблице
+            //dataGridView1.SelectedRows
+        }
     }
 }
