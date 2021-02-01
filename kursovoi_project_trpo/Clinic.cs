@@ -39,8 +39,8 @@ namespace kursovoi_project_trpo
         {
             using (OleDbConnection connection = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
             {
-              
-                      string query = @"SELECT A.Код, C.NumberDepartment, B.NameDisease, A.DaysHealth, A.PriceDay, A.PriceMedicoment 
+
+                string query = @"SELECT A.Код, C.NumberDepartment, B.NameDisease, A.DaysHealth, A.PriceDay, A.PriceMedicoment 
                                 FROM Clinic A, Disease B, Department C,
                                 A LEFT JOIN B ON A.Name = B.Код,
                                 A LEFT JOIN C ON A.NumberOtd = C.Код ;";
@@ -139,7 +139,7 @@ namespace kursovoi_project_trpo
             using (OleDbConnection connection = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
             {
                 string query = "SELECT Код FROM Department WHERE NumberDepartment = @id;";
-            
+
                 using (OleDbCommand command = new OleDbCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@id", comboBox3.SelectedItem.ToString());
@@ -211,8 +211,8 @@ namespace kursovoi_project_trpo
                         textBox3.Text += (Convert.ToInt32(row[3].ToString()) * Convert.ToInt32(row[4].ToString()) + Convert.ToInt32(row[5].ToString())) + ", ";
                         textBox1.Text += Convert.ToInt32(row[5].ToString()) + ", ";
                     }
-                    if(CountItem > 0)
-                    textBox2.Text = "" + (sredStoimost / CountItem);
+                    if (CountItem > 0)
+                        textBox2.Text = "" + (sredStoimost / CountItem);
                     connection.Close();
                 }
             }
@@ -247,7 +247,36 @@ namespace kursovoi_project_trpo
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                using (OleDbConnection connection = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+                {
+                    String query = "DELETE FROM Clinic WHERE Код = @id";
 
+                    using (OleDbCommand command = new OleDbCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", dataGridView1.SelectedRows[0].Cells[0].Value);
+
+                        connection.Open();
+                        int result = command.ExecuteNonQuery();
+                        OleDbDataAdapter sqlDataAdap = new OleDbDataAdapter(command);
+                        DataTable dtRecord = new DataTable();
+                        // Check Error
+                        if (result < 0)
+                            MessageBox.Show("Произошла ошибка при удалении данных!");
+                        else
+                        {
+                            sqlDataAdap.Fill(dtRecord);
+                            MessageBox.Show("Удаление прошло успешно!");
+                        }
+                    }
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Выберите пожалуйста одну полную строку");
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -264,12 +293,12 @@ namespace kursovoi_project_trpo
 
                 using (OleDbCommand command = new OleDbCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@id", comboBox2.SelectedItem.ToString()); 
+                    command.Parameters.AddWithValue("@id", comboBox2.SelectedItem.ToString());
                     connection.Open();
                     OleDbDataAdapter sqlDataAdap = new OleDbDataAdapter(command);
                     DataTable dtRecord = new DataTable();
                     sqlDataAdap.Fill(dtRecord);
-       
+
                     connection.Close();
                 }
             }

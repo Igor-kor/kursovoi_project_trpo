@@ -85,9 +85,36 @@ namespace kursovoi_project_trpo
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Удаление успешно!");
-            // удаляет выбранные строки в таблице
-            //dataGridView1.SelectedRows
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                using (OleDbConnection connection = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+                {
+                    String query = "DELETE FROM Adress WHERE Id = @id";
+
+                    using (OleDbCommand command = new OleDbCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", dataGridView1.SelectedRows[0].Cells[0].Value);
+
+                        connection.Open();
+                        int result = command.ExecuteNonQuery();
+                        OleDbDataAdapter sqlDataAdap = new OleDbDataAdapter(command);
+                        DataTable dtRecord = new DataTable();
+                        // Check Error
+                        if (result < 0)
+                            MessageBox.Show("Произошла ошибка при удалении данных!");
+                        else
+                        {
+                            sqlDataAdap.Fill(dtRecord);
+                            MessageBox.Show("Удаление прошло успешно!");
+                        }
+                    }
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Выберите пожалуйста одну полную строку");
+            }
         }
     }
 }
