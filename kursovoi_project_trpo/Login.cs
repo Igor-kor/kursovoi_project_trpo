@@ -18,12 +18,12 @@ namespace kursovoi_project_trpo
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public bool Auth(string login, string pass)
         {
             var myConn = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString);
             myConn.Open();
 
-            var query = "Select * From Users Where username = '" + textBox1.Text.Trim() + "' and password = '" + textBox2.Text.Trim() + "'";
+            var query = "Select * From Users Where username = '" + login+ "' and password = '" + pass + "'";
 
             var sda = new OleDbDataAdapter(query, myConn);
 
@@ -31,7 +31,17 @@ namespace kursovoi_project_trpo
 
             sda.Fill(dt);
 
-            if(dt.Rows.Count == 1)
+            if (dt.Rows.Count == 1)
+            {
+                return true;
+               
+            }
+            return false;
+           
+        }
+        private void button1_Click(object sender, EventArgs e)
+        { 
+            if(Auth(textBox1.Text.Trim(), textBox2.Text.Trim()))
             {
                 MainForm f = new MainForm();
                 this.SetVisibleCore(false);
