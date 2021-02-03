@@ -402,6 +402,7 @@
             // 
             this.textBox4.Location = new System.Drawing.Point(113, 23);
             this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(100, 20);
             this.textBox4.TabIndex = 32;
             // 

@@ -70,6 +70,7 @@
     <Compile Include="Addres.Designer.cs">
       <DependentUpon>Addres.cs</DependentUpon>
     </Compile>
+    <Compile Include="CDisease.cs" />
     <Compile Include="Clinic.cs">
       <SubType>Form</SubType>
     </Compile>

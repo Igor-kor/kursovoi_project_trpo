@@ -207,6 +207,7 @@
             this.Controls.Add(this.label1);
             this.Name = "EditClinic";
             this.Text = "EditClinic";
+            this.Load += new System.EventHandler(this.EditClinic_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
