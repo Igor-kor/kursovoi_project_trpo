@@ -229,11 +229,11 @@ namespace kursovoi_project_trpo
         {
             using (OleDbConnection connection = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
             {
-                string query = "UPDATE Clinic SET PriceDay =  PriceDay + ( PriceDay / 100 * " + numericUpDown1.Value.ToString() + " )  WHERE Name = @id;";
+                string query = "UPDATE Clinic SET PriceDay =  PriceDay + ( PriceDay / 100 * " + numericUpDown1.Value + " )  WHERE Name = @id;";
 
                 using (OleDbCommand command = new OleDbCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@id", comboBox2.SelectedItem.ToString());
+                    command.Parameters.AddWithValue("@id", CDisease.getId( comboBox2.SelectedItem.ToString()));
                     connection.Open();
                     OleDbDataAdapter sqlDataAdap = new OleDbDataAdapter(command);
                     DataTable dtRecord = new DataTable();
