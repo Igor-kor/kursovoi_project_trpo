@@ -26,8 +26,8 @@ namespace kursovoi_project_trpo
 
                 using (OleDbCommand command = new OleDbCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@name", 1);
-                    command.Parameters.AddWithValue("@numberOtd", 1);
+                    command.Parameters.AddWithValue("@name", CDisease.getId(comboBox1.SelectedItem.ToString()));
+                    command.Parameters.AddWithValue("@numberOtd", CDepartment.getId(comboBox2.SelectedItem.ToString()));
                     command.Parameters.AddWithValue("@daysHealth", numericUpDown1.Value);
                     command.Parameters.AddWithValue("@priceDay",numericUpDown2.Value);
                     command.Parameters.AddWithValue("@priceMedicoment", numericUpDown3.Value);
@@ -40,6 +40,14 @@ namespace kursovoi_project_trpo
                     connection.Close();
                 }
             }
+        }
+
+        private void AddClinic_Load(object sender, EventArgs e)
+        {
+            comboBox1.Items.AddRange(CDisease.GetListName().ToArray());
+            comboBox1.SelectedIndex = 0;
+            comboBox2.Items.AddRange(CDepartment.ListNumberOtd().ToArray());
+            comboBox2.SelectedIndex = 0;
         }
     }
 }

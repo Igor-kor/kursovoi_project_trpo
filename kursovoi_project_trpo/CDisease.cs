@@ -133,6 +133,31 @@ namespace kursovoi_project_trpo
             }
             return Convert.ToInt32(names);
         }
+
+        public static string GetNameById(int id)
+        {
+            if (id < 0) return "";
+            string names = "";
+            using (OleDbConnection connection = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+            {
+                string query = "SELECT NumberDepartment  FROM Department WHERE  Код = @id;";
+
+                using (OleDbCommand command = new OleDbCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    connection.Open();
+                    OleDbDataAdapter sqlDataAdap = new OleDbDataAdapter(command);
+                    DataTable dtRecord = new DataTable();
+                    sqlDataAdap.Fill(dtRecord);
+                    foreach (DataRow row in dtRecord.Rows)
+                    {
+                        names = row[0].ToString();
+                    }
+                    connection.Close();
+                }
+            }
+            return names;
+        }
     }
 }
 

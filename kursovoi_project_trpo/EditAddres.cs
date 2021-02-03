@@ -12,8 +12,10 @@ namespace kursovoi_project_trpo
 {
     public partial class EditAddres : Form
     {
-        public EditAddres()
+        int id = -1;
+        public EditAddres(int id)
         {
+            this.id = id;
             InitializeComponent();
         }
 
@@ -24,8 +26,15 @@ namespace kursovoi_project_trpo
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // делаем запрос на сохранения данных с текущим id
             MessageBox.Show("Изменения сохранены!");
             this.Close();
+        }
+
+        private void EditAddres_Load(object sender, EventArgs e)
+        {
+            textBox3.Text = id.ToString();
+            // делаем запрос и выводим все даннык
         }
     }
 }

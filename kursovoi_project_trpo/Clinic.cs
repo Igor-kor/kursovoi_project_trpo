@@ -248,8 +248,8 @@ namespace kursovoi_project_trpo
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {
-               /* Form form = new EditClinic(dataGridView1.SelectedRows[0].Cells[0].Value);
-                form.Show();*/
+               Form form = new EditClinic(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value));
+                form.Show();
 
             }
             else

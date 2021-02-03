@@ -40,8 +40,6 @@
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -148,31 +146,11 @@
             this.button2.Text = "Отмена";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(305, 58);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(125, 23);
-            this.button3.TabIndex = 15;
-            this.button3.Text = "Новая болезнь";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(305, 91);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(125, 23);
-            this.button4.TabIndex = 16;
-            this.button4.Text = "Новое отделение";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
             // AddClinic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(457, 328);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.ClientSize = new System.Drawing.Size(312, 328);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.numericUpDown3);
@@ -187,6 +165,7 @@
             this.Controls.Add(this.label1);
             this.Name = "AddClinic";
             this.Text = "AddClinic";
+            this.Load += new System.EventHandler(this.AddClinic_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
@@ -209,7 +188,5 @@
         private System.Windows.Forms.NumericUpDown numericUpDown3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
     }
 }

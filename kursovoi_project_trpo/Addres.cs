@@ -79,8 +79,15 @@ namespace kursovoi_project_trpo
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form form = new EditAddres();
-            form.Show();
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                Form form = new EditAddres(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value));
+                form.Show();
+            }
+            else
+            {
+                MessageBox.Show("Выберите одну строку");
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
