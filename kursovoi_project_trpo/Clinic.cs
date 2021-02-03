@@ -19,7 +19,7 @@ namespace kursovoi_project_trpo
             InitializeComponent();
         }
 
-        private void Clinic_Load(object sender, EventArgs e)
+        public void Clinic_Load(object sender, EventArgs e)
         {
             ReloadTable();
 
@@ -56,7 +56,7 @@ namespace kursovoi_project_trpo
             }
         }
 
-        private List<string> ListNames()
+        public List<string> ListNames()
         {
             return CDisease.GetListName();
         }
@@ -99,7 +99,7 @@ namespace kursovoi_project_trpo
 
         }
 
-        private string FindMinDay()
+        public string FindMinDay()
         {
             string name;
             using (OleDbConnection connection = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
@@ -158,7 +158,7 @@ namespace kursovoi_project_trpo
             }
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        public void button7_Click(object sender, EventArgs e)
         {
             if (idLow == -1) return;
             using (OleDbConnection connection = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))

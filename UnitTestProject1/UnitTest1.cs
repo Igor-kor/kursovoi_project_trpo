@@ -17,5 +17,15 @@ namespace UnitTestProject1
             Assert.IsFalse(form.Auth("admi"," admin"));
             Assert.IsFalse(form.Auth("true"," true")); 
         }
+
+        [TestMethod]
+        public void TestMethod2()
+        {
+            Clinic clinic = new Clinic();
+            clinic.Clinic_Load(new object(), new EventArgs());
+            string name = clinic.FindMinDay();
+            clinic.button7_Click(new object(),new EventArgs());
+            Assert.IsTrue(name != clinic.FindMinDay());
+        }
     }
 }
