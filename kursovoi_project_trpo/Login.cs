@@ -34,12 +34,18 @@ namespace kursovoi_project_trpo
             if(dt.Rows.Count == 1)
             {
                 MainForm f = new MainForm();
+                this.SetVisibleCore(false);
+                f.FormClosed  += new FormClosedEventHandler(frm_FormClosed); 
                 f.ShowDialog();
             }
             else
             {
                 MessageBox.Show("Неверный логин или пароль!");
             }
+        }
+        private void frm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
